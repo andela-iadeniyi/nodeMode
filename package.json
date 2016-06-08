@@ -1,0 +1,23 @@
+{
+  "name": "yelp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-iadeniyi/nodeMode.git"
+  },
+  "keywords": [
+    "node",
+    "mode"
+  ],
+  "author": "Ibonly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-iadeniyi/nodeMode/issues"
+  },
+  "homepage": "https://github.com/andela-iadeniyi/nodeMode#readme"
+}
