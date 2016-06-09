@@ -2,14 +2,19 @@ import React, { PropTypes } from 'react';
 import { Router } from 'react-router';
 
 class App extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   static propTypes = {
-    routes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.element.isRequired
   }
 
   // class getter
   get content() {
-    return (<Router
+    return (
+      <Router
         routes={this.props.routes}
         history={this.props.history} />)
   }
@@ -22,3 +27,5 @@ class App extends React.Component {
     )
   }
 }
+
+export default App;

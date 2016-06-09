@@ -4,7 +4,7 @@ export class Container extends React.Component {
 	render() {
 		return (
 			<div>
-				Helo from the container
+				Hello from the container
 			</div>
 		);
 	}
