@@ -1,3 +1,5 @@
+require('babel-register');
+
 const webpack = require('webpack'),
     dotenv    = require('dotenv')
     fs        = require('fs'),
@@ -7,6 +9,7 @@ const webpack = require('webpack'),
     getConfig = require('hjs-webpack'),
     NODE_ENV  = process.env.NODE_ENV,
     isDev     = NODE_ENV === 'development',
+    isTest    = NODE_ENV === 'test',
     root      = resolve(__dirname),
     src       = join(root, 'src'),
     modules   = join(root, 'node_modules'),
@@ -19,6 +22,31 @@ const config  = getConfig({
     out: dest,
     clearBeforeBuild: true
 });
+
+if (isTest) {
+    config.externals = {
+        'react/lib/ReactContext': true,
+        'react/lib/ExecutionEnvironment': true
+    }
+
+    config.plugins = config.plugins.filter(p => {
+        const name = p.constructor.toString();
+        const fnName = name.match(/^function (.*)\((.*\))/);
+
+        const idx = [
+            'DedupePlugin',
+            'UglifyJsPlugin'
+        ].indexOf(fnName[1]);
+
+        return idx < 0;
+    });
+}
+
+config.externals = {
+    'react/lib/ReactContext': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/addons': true
+}
 
 config.resolve.root = [src, modules];
 config.resolve.alias =  {
