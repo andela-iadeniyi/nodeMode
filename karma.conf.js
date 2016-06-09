@@ -1,5 +1,6 @@
-var path = require('path');
-var webpackConfig = require('./webpack.config');
+var path = require('path'),
+	webpackConfig = require('./webpack.config'),
+	argv = require('yargs').argv;
 
 module.exports = function(config) {
 	config.set({
@@ -21,6 +22,7 @@ module.exports = function(config) {
 		browsers: ['PhantomJS'],
 		concurrency: Infinity,
 		reporters: ['spec'],
+		singleRun: !argv.watch,
 		plugins: [
 			'karma-mocha',
 			'karma-chai',
